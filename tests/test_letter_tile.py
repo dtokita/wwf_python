@@ -38,7 +38,7 @@ def test_letter_tile_init():
         ("W", 4),
         ("X", 8),
         ("Y", 3),
-        ("Z", 10)
+        ("Z", 10),
     ],
 )
 def test_letter_tile_base_point_values(letter: str, base_point_value: int):

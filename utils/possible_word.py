@@ -1,0 +1,2 @@
+class PossibleWord:
+    pass
