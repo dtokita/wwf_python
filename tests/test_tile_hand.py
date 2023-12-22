@@ -81,3 +81,41 @@ def test_tile_hand_remove_tiles_from_hand_invalid_tile():
     assert not th.remove_tiles_from_hand([LetterTile("B")])
     assert len(th.tiles) == 1
     assert LetterTile("A") in th.tiles
+
+
+def test_tile_hand_exchange_tiles_from_bag_no_tiles_left():
+    th = TileHand()
+    bot = BagOfTiles()
+
+    assert not th.exchange_tiles_from_bag(th.tiles, bot)
+
+
+def test_tile_hand_exchange_tiles_from_bag_wrong_tiles():
+    th = TileHand()
+    bot = StandardBagOfTiles()
+
+    # Draw 7 random tiles, odds are they won't be the same
+    # as the tiles in the hand, therefore testing the logic
+    # of checking if the exchanged tiles are actually in the
+    # hand
+    test_tiles = []
+    for _ in range(th.max_number_of_tiles):
+        test_tiles.append(bot.draw_random_tile())
+
+    assert not th.exchange_tiles_from_bag(test_tiles, bot)
+
+
+def test_tile_hand_exchange_tiles_from_bag():
+    th = TileHand()
+    bot = StandardBagOfTiles()
+
+    th.fill_hand_from_bag(bot)
+
+    # Deep copy the inital tiles
+    initial_tiles = list(th.tiles)
+
+    assert initial_tiles == th.tiles
+
+    th.exchange_tiles_from_bag(th.tiles, bot)
+
+    assert initial_tiles != th.tiles
