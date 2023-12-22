@@ -1,17 +1,15 @@
 import random
-
-from typing import List, Dict, Optional
 from collections import defaultdict
+from typing import Dict, List, Optional
 
-from utils.letter_tile import LetterTile
 from utils.constants.standard_tile_counts import standard_tile_counts
+from utils.letter_tile import LetterTile
 
 
 class BagOfTiles:
-    indexed_tiles: Dict[str, List[LetterTile]] = defaultdict(list)
-    number_of_tiles = 0
-
     def __init__(self):
+        self.indexed_tiles: Dict[str, List[LetterTile]] = defaultdict(list)
+        self.number_of_tiles = 0
         self._fill_bag()
 
     def _fill_bag(self) -> None:
@@ -37,6 +35,12 @@ class BagOfTiles:
                 self.number_of_tiles -= 1
 
                 return drawn_tile
+
+    def add_tile_to_bag(self, tile: LetterTile) -> None:
+        letter = tile.letter
+
+        self.indexed_tiles[letter].append(tile)
+        self.number_of_tiles += 1
 
 
 class StandardBagOfTiles(BagOfTiles):

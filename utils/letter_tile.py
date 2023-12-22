@@ -12,6 +12,9 @@ class LetterTile:
     def __repr__(self):
         return f"<LetterTile {self.letter}, {self.base_point_value}>"
 
+    def __eq__(self, other):
+        return self.letter == other.letter
+
 
 class WildcardTile(LetterTile):
     pass

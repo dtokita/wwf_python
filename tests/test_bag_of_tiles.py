@@ -1,6 +1,7 @@
-from utils.constants.standard_tile_counts import standard_tile_counts
-
 from utils.bag_of_tiles import BagOfTiles, StandardBagOfTiles
+from utils.constants.standard_tile_counts import standard_tile_counts
+from utils.letter_tile import LetterTile
+from utils.tile_hand import TileHand
 
 
 def test_bag_of_tiles_init():
@@ -65,3 +66,14 @@ def test_draw_random_tile_all_tiles():
 
     assert drawn_tile is None
     assert bot.number_of_tiles == 0
+
+
+def test_add_tile_to_bag():
+    bot = BagOfTiles()
+
+    initial_number_of_tiles = bot.number_of_tiles
+
+    bot.add_tile_to_bag(LetterTile("A"))
+
+    assert initial_number_of_tiles + 1 == bot.number_of_tiles
+    assert len(bot.indexed_tiles["A"]) == 1
