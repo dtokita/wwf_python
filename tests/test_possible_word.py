@@ -40,3 +40,15 @@ def test_possible_word_not_a_word():
     assert pw.word == "appleq"
     assert pw.base_point_value == 22
     assert not pw.is_valid_word
+
+
+def test_possible_word_too_short():
+    pw = PossibleWord(
+        [
+            LetterTile("A"),
+        ]
+    )
+
+    assert pw.word == "a"
+    assert pw.base_point_value == 1
+    assert not pw.is_valid_word
