@@ -19,3 +19,10 @@ def test_standard_tile_board_init():
     assert tb.num_of_cols == 15
     assert len(tb.board) == 15
     assert len(tb.board[0]) == 15
+
+
+# def test_print_tile_board():
+#     tb = StandardTileBoard()
+#     print(tb)
+
+#     assert False

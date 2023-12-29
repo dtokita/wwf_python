@@ -117,5 +117,38 @@ class StandardTileBoard(TileBoard):
         for dw in self.double_word_spaces:
             self.board[dw[0]][dw[1]].make_bonus_tile_space(2, True, False)
 
-        for tw in self.double_word_spaces:
+        for tw in self.triple_word_spaces:
             self.board[tw[0]][tw[1]].make_bonus_tile_space(3, True, False)
+
+        self.board[7][7].make_starting_tile_space()
+
+    def __repr__(self):
+        board_string = ""
+
+        for row in self.board:
+            for tile in row:
+                # Place the tile bonuses
+                if tile.is_tile_bonus:
+                    if tile.bonus_multiplier == 2:
+                        board_string += " DL "
+                    elif tile.bonus_multiplier == 3:
+                        board_string += " TL "
+
+                # Place the word bonuses
+                elif tile.is_word_bonus:
+                    if tile.bonus_multiplier == 2:
+                        board_string += " DW "
+                    elif tile.bonus_multiplier == 3:
+                        board_string += " TW "
+
+                # Place the starting space
+                elif tile.is_starting_space:
+                    board_string += " ** "
+
+                # Place the blank spaces
+                else:
+                    board_string += " -- "
+
+            board_string += "\n"
+
+        return board_string
