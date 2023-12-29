@@ -1,3 +1,6 @@
+from utils.letter_tile import LetterTile
+
+
 class TileSpace:
     def __init__(self):
         self.current_tile = None
@@ -16,6 +19,10 @@ class TileSpace:
     def make_starting_tile_space(self):
         self.is_starting_space = True
 
-    def place_tile(self):
-        # Check if tile has been placed already
-        pass
+    def place_letter_tile_on_tile_space(self, letter_tile: LetterTile) -> bool:
+        if not self.current_tile:
+            self.current_tile = letter_tile
+
+            return True
+
+        return False
