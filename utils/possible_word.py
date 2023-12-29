@@ -28,3 +28,6 @@ class PossibleWord:
 
         if word_list_by_len.get(self.word[:2]):
             return self.word in word_list_by_len[self.word[:2]]
+
+    def __repr__(self):
+        return f"<PossibleWord {self.word}, {self.base_point_value}>"
