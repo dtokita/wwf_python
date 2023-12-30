@@ -1,3 +1,5 @@
+import pytest
+
 from utils.solver import Solver, HighestValueAnagramSolver
 from utils.tile_board import StandardTileBoard
 from utils.tile_hand import TileHand
@@ -16,8 +18,8 @@ def test_solver_init():
     assert solver.bag_of_tiles == bot
 
 
-# Paramterize this test
-def test_hvas_find_highest_value_in_hand():
+@pytest.mark.parametrize("tiles, best_word", [("A", "A")])
+def test_hvas_find_highest_value_in_hand(tiles, best_word):
     tb = StandardTileBoard()
     th = TileHand()
     bot = StandardBagOfTiles()

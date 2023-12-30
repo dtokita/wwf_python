@@ -8,6 +8,33 @@ def test_letter_tile_init():
 
     assert lt.letter == "A"
     assert lt.base_point_value == 1
+    assert not lt.is_wildcard
+
+
+def test_letter_tile_wildcard():
+    lt = LetterTile("?")
+
+    assert lt.letter == "?"
+    assert lt.base_point_value == 0
+    assert lt.is_wildcard
+
+
+def test_letter_tile_set_wildcard_value():
+    lt = LetterTile("?")
+
+    assert lt.set_wildcard_value("A")
+
+    assert lt.letter == "A"
+    assert lt.base_point_value == 0
+    assert lt.is_wildcard
+
+
+def test_letter_tile_try_to_set_invalid_wildcard_value():
+    lt = LetterTile("A")
+
+    assert not lt.set_wildcard_value("B")
+
+    assert lt.letter == "A"
 
 
 @pytest.mark.parametrize(

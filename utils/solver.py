@@ -1,5 +1,6 @@
 from itertools import permutations
 
+from utils.letter_tile import LetterTile
 from utils.tile_board import TileBoard
 from utils.tile_hand import TileHand
 from utils.bag_of_tiles import BagOfTiles
@@ -23,9 +24,16 @@ class HighestValueAnagramSolver(Solver):
 
         for i in range(1, len(self.tile_hand.tiles) + 1):
             for tiles in permutations(self.tile_hand.tiles, i):
-                pw = PossibleWord(tiles)
-                combinations_tried += 1
+                if LetterTile("?") in tiles:
+                    for letter in range(ord("A"), ord("Z") + 1):
+                        pass
 
-                if pw.is_valid_word and (pw.base_point_value > highest_value):
-                    highest_value = pw.base_point_value
-                    highest_value_pw = pw
+                else:
+                    pw = PossibleWord(tiles)
+                    combinations_tried += 1
+
+                    if pw.is_valid_word and (pw.base_point_value > highest_value):
+                        highest_value = pw.base_point_value
+                        highest_value_pw = pw
+
+        return highest_value_pw
